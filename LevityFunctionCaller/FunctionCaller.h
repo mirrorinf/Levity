@@ -22,6 +22,6 @@ void LevityCallerEnvironmentDestroy(LevityCallerEnvironment *self);
 
 void LevityCallerEnvironmentFunctionRegist(LevityCallerEnvironment *self, VoidSFunc func, const char *identifier);
 
-void LevityCallerEnvironmentFunctionCall(LevityCallerEnvironment *self, const char *func);
+void *LevityCallerEnvironmentFunctionCall(LevityCallerEnvironment *self, const char *func, void *data);
 
 #endif /* FunctionCaller_h */
