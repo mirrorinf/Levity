@@ -25,11 +25,12 @@ typedef struct HashElement_ {
 typedef struct HashMap_ {
 	HashElement **array;
 	UInt buckets, count;
+	VoidFunc dataDestroy;
 } HashMap;
 
 UInt hash(const char *key);
 
-HashMap *HashMapNew(UInt buckets);
+HashMap *HashMapNew(UInt buckets, VoidFunc dataDestroy);
 
 void HashMapDestroy(HashMap *self);
 

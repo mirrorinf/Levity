@@ -20,7 +20,7 @@ UInt hash(const char *key) {
 	return sum;
 }
 
-HashMap *HashMapNew(UInt buckets) {
+HashMap *HashMapNew(UInt buckets, VoidFunc dataDestroy) {
 	HashMap *new = (HashMap *)malloc(sizeof(HashMap));
 	if (new == NULL) {
 		return NULL;
@@ -32,7 +32,7 @@ HashMap *HashMapNew(UInt buckets) {
 	}
 	new->count = 0;
 	new->buckets = buckets;
-	
+	new->dataDestroy = dataDestroy;
 	return new;
 }
 
@@ -42,6 +42,9 @@ void HashMapDestroy(HashMap *self) {
 			while (self->array[i] != NULL) {
 				HashElement *temp = self->array[i];
 				self->array[i] = temp->next;
+				if (self->dataDestroy != NULL) {
+					self->dataDestroy(temp->data);
+				}
 				free(temp);
 			}
 		}

@@ -19,5 +19,7 @@ typedef unsigned long UInt32;
 typedef unsigned long long UInt64;
 typedef long long Int;
 typedef unsigned long long UInt;
+typedef void (*VoidFunc)(void *);
+typedef void *(*VoidSFunc)(void *);
 
 #endif /* TypeRenaming_h */
